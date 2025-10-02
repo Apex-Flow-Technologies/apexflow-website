@@ -7,7 +7,7 @@ const Hero = () => {
       textAlign: 'center',
       padding: '4rem 1rem',
       display: 'flex',
-      flexDirection: 'colum
+      flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
       gap: '0.5rem'
