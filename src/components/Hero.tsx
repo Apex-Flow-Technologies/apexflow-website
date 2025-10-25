@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown, Sparkles, Zap, Shield } from "lucide-react";
+import { motion } from "framer-motion";
 
 export const Hero = () => {
   const scrollToSection = (href: string) => {
@@ -21,54 +22,135 @@ export const Hero = () => {
       id="home"
       className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-background" />
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9Ii4wNSIvPjwvZz48L3N2Zz4=')] opacity-40" />
+      {/* Animated gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-accent/10" />
+      <div className="absolute top-40 left-20 w-96 h-96 bg-primary/20 rounded-full filter blur-3xl float-animation" />
+      <div className="absolute bottom-40 right-20 w-96 h-96 bg-accent/20 rounded-full filter blur-3xl float-animation" style={{ animationDelay: '2s' }} />
+      
+      {/* Animated gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background/50 to-background/80" />
+      
+      {/* Floating particles */}
+      <div className="absolute inset-0">
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-primary rounded-full float-animation"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${5 + Math.random() * 10}s`
+            }}
+          />
+        ))}
+      </div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-4xl mx-auto text-center animate-fade-in-up">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-            <span className="bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent">
-              Stop Patching, Start Scaling.
-            </span>
-            <br />
-            <span className="text-foreground">
-              Get Practical IT Solutions That Work.
-            </span>
-          </h1>
+        <div className="max-w-6xl mx-auto text-center">
+          {/* Animated badge */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-morphism mb-8"
+          >
+            <Sparkles className="w-4 h-4 text-primary" />
+            <span className="text-sm font-medium gradient-text">AI-Powered IT Solutions</span>
+          </motion.div>
           
-          <p className="text-xl sm:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
-            We help small and medium businesses go digital—faster and smarter. ApexFlow Technologies provides affordable, hyper-local automation, system integration, and custom software.
-          </p>
+          <motion.h1 
+            className="text-5xl sm:text-6xl lg:text-8xl font-bold mb-6 leading-tight"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <span className="block bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent animate-pulse">
+              Stop Patching,
+            </span>
+            <span className="block bg-gradient-to-r from-accent via-primary-glow to-primary bg-clip-text text-transparent animate-pulse" style={{ animationDelay: '0.5s' }}>
+              Start Scaling.
+            </span>
+          </motion.h1>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <motion.p 
+            className="text-xl sm:text-2xl lg:text-3xl text-muted-foreground mb-12 max-w-4xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            Transform your business with cutting-edge automation, system integration, and custom software solutions. 
+            <span className="gradient-text font-semibold"> Fast, smart, and affordable.</span>
+          </motion.p>
+          
+          {/* Feature pills */}
+          <motion.div 
+            className="flex flex-wrap justify-center gap-4 mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            {[
+              { icon: Zap, text: "Lightning Fast" },
+              { icon: Shield, text: "Secure & Reliable" },
+              { icon: Sparkles, text: "AI-Enhanced" }
+            ].map((feature, index) => (
+              <div
+                key={index}
+                className="flex items-center gap-2 px-4 py-2 rounded-full glass-morphism hover-lift cursor-default"
+              >
+                <feature.icon className="w-4 h-4 text-primary" />
+                <span className="text-sm font-medium">{feature.text}</span>
+              </div>
+            ))}
+          </motion.div>
+          
+          <motion.div 
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
             <Button
               size="lg"
               onClick={() => scrollToSection("#contact")}
-              className="group text-lg px-8 py-6 bg-gradient-to-r from-primary to-primary-glow hover:shadow-lg hover:shadow-primary/50 transition-all duration-300"
+              className="group text-lg px-10 py-8 bg-gradient-to-r from-primary to-primary-glow hover:shadow-2xl hover:shadow-primary/50 transition-all duration-500 hover:scale-105 relative overflow-hidden"
             >
-              Request a Free Consultation
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              <span className="relative z-10 flex items-center gap-3">
+                Request a Free Consultation
+                <ArrowRight className="h-5 w-5 group-hover:translate-x-2 transition-transform duration-300" />
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </Button>
             
             <Button
               size="lg"
               variant="outline"
               onClick={() => scrollToSection("#services")}
-              className="text-lg px-8 py-6 border-2 hover:bg-primary/10"
+              className="text-lg px-10 py-8 border-2 hover:bg-primary/10 hover:border-primary hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 hover:scale-105 glass-morphism"
             >
               See Our Services
             </Button>
-          </div>
+          </motion.div>
         </div>
       </div>
 
-      <button
+      {/* Animated scroll indicator */}
+      <motion.button
         onClick={() => scrollToSection("#services")}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-primary hover:text-primary-glow transition-colors"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-primary hover:text-primary-glow transition-colors"
         aria-label="Scroll down"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1.2 }}
       >
-        <ChevronDown className="h-8 w-8" />
-      </button>
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <ChevronDown className="h-8 w-8" />
+        </motion.div>
+      </motion.button>
     </section>
   );
 };
