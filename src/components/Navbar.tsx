@@ -62,13 +62,16 @@ export const Navbar = () => {
               onClick={() => scrollToSection("#home")}
               className="text-2xl font-bold gradient-text hover:scale-110 transition-transform duration-300 flex items-center gap-2"
             >
-              <motion.div
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="w-8 h-8 bg-gradient-to-r from-primary to-primary-glow rounded-lg flex items-center justify-center"
-              >
-                <Zap className="w-4 h-4 text-white" />
-              </motion.div>
+              <div
+                    className="w-10 h-10 flex items-center justify-center rounded-full overflow-hidden"
+                  >
+                    <img
+                      src="/image.png" // ← your logo path (public folder)
+                      alt="ApexFlow Logo"
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+
               ApexFlow
             </button>
           </motion.div>

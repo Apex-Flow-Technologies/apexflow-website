@@ -6,32 +6,32 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 const testimonials = [
   {
     quote:
-      "ApexFlow automated our entire invoicing process by linking Tally to our CRM. It's saved us at least 10 hours a week. As a small business, that's game-changing.",
-    author: "John D.",
-    role: "Owner, Local Business",
+      "We were managing our field technicians with phone calls and lost paper tickets. ApexFlow built a mobile app that gives us real-time visibility. Our managers can dispatch jobs instantly, and technicians log their work from the site. Our response time is 30% faster.",
+    author: "Suresh M.",
+    role: "Operations Manager",
     rating: 5,
-    company: "Retail Solutions Inc.",
-    color: "from-blue-500 to-purple-600"
+    company: "TechnoBright Services, Chennai",
+    color: "from-teal-500 to-indigo-600"
   },
   {
     quote:
-      "We needed a custom tool for our unique inventory, and the ApexFlow team built it faster and more affordably than we thought possible. They understood our problem perfectly.",
-    author: "Sarah L.",
-    role: "Operations Manager, Startup",
-    rating: 5,
-    company: "Tech Innovations",
+      "As a volunteer-run club, we were drowning in spreadsheets. ApexFlow built a portal that automated our member sign-ups and event emails. It's cut 90% of our admin work and our member engagement for events is up 50%.",
+    author: "Deepa V.",
+    role: "Club Secretary",
+    rating: 4,
+    company: "Leo Club of Adyar, Chennai",
     color: "from-green-500 to-teal-600"
   },
   {
     quote:
-      "The automation bots they created for our daily reporting have eliminated human error completely. Our team can now focus on strategic work instead of repetitive tasks.",
-    author: "Michael R.",
-    role: "CEO, Manufacturing Firm",
-    rating: 5,
-    company: "Precision Manufacturing",
+      "Manually preparing our daily sales reports from Tally was a 2-hour job and full of errors. ApexFlow built an automation bot that does it in 5 minutes. Our team is now free to focus on analysis, not just data entry.",
+    author: "Ganesh R.",
+    role: "Finance Manager",
+    rating: 4,
+    company: "Amman Distributors, T. Nagar",
     color: "from-orange-500 to-red-600"
-  },
-];
+  }
+]
 
 const TestimonialCard = ({ testimonial, index, isActive }: { 
   testimonial: typeof testimonials[0]; 
@@ -287,42 +287,6 @@ export const Testimonials = () => {
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.8 }}
               />
-            ))}
-          </motion.div>
-          
-          {/* Stats */}
-          <motion.div 
-            className="grid grid-cols-3 gap-8 mt-16 max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 1.2 }}
-          >
-            {[
-              { icon: Users, value: "500+", label: "Happy Clients" },
-              { icon: TrendingUp, value: "95%", label: "Success Rate" },
-              { icon: Award, value: "50+", label: "Projects Completed" }
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.5, delay: 1.4 + index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                className="text-center"
-              >
-                <motion.div
-                  animate={{ 
-                    rotate: [0, 10, -10, 0],
-                    scale: [1, 1.1, 1]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity, delay: index * 0.5 }}
-                  className="inline-flex p-3 rounded-lg bg-gradient-to-br from-primary/20 to-primary-glow/20 mb-3"
-                >
-                  <stat.icon className="w-6 h-6 text-primary" />
-                </motion.div>
-                <div className="text-2xl font-bold gradient-text">{stat.value}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </motion.div>
             ))}
           </motion.div>
         </div>

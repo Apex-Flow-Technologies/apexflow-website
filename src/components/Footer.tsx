@@ -21,18 +21,18 @@ const footerLinks = [
   {
     title: "Connect",
     links: [
-      { name: "contact@apexflow.tech", href: "mailto:contact@apexflow.tech", icon: Mail },
-      { name: "+1 (555) 123-4567", href: "tel:+15551234567", icon: Phone },
-      { name: "LinkedIn", href: "https://linkedin.com", icon: Linkedin },
+      { name: "harisudhan@apexflowtechnologies.com", href: "mailto:harisudhan@apexflowtechnologies.com", icon: Mail },
+      { name: "+91 95007 05796", href: "tel:+91 95007 05796", icon: Phone },
+      { name: "LinkedIn", href: "https://www.linkedin.com/company/apexflow-tech/", icon: Linkedin },
     ]
   }
 ];
 
 const socialLinks = [
-  { icon: Github, href: "#", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+  { icon: Github, href: "https://github.com/Apex-Flow-Technologies", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/company/apexflow-tech/", label: "LinkedIn" },
   { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Mail, href: "mailto:contact@apexflow.tech", label: "Email" },
+  { icon: Mail, href: "mailto:harisudhan@apexflowtechnologies.com", label: "Email" },
 ];
 
 export const Footer = () => {

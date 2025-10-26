@@ -2,6 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { Target, DollarSign, Rocket, Users, TrendingUp, Award, Globe, Lightbulb } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import {
+  Wrench,          // Represents professional experience
+  HeartHandshake,     // Represents partnership/satisfaction
+  Zap,                // Represents speed/automation
+  LifeBuoy            // Represents support
+} from 'lucide-react';
+
 
 const values = [
   {
@@ -28,12 +35,11 @@ const values = [
 ];
 
 const stats = [
-  { icon: Users, value: "500+", label: "Businesses Transformed", color: "text-blue-500" },
-  { icon: TrendingUp, value: "95%", label: "Client Satisfaction", color: "text-green-500" },
-  { icon: Award, value: "50+", label: "Custom Solutions", color: "text-purple-500" },
-  { icon: Globe, value: "24/7", label: "Support Available", color: "text-orange-500" },
+  { icon: Wrench, value: "100%", label: "Custom-Fit Solutions", color: "text-blue-500" },
+  { icon: Zap, value: "2", label: "Custom Automations Built", color: "text-purple-500" },
+  { icon: HeartHandshake, value: "100%", label: "Client Partnership Success", color: "text-green-500" },
+  { icon: LifeBuoy, value: "24/7", label: "Support Commitment", color: "text-orange-500" },
 ];
-
 const AnimatedStatCard = ({ stat, index }: { stat: typeof stats[0]; index: number }) => {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
@@ -80,7 +86,7 @@ const AnimatedStatCard = ({ stat, index }: { stat: typeof stats[0]; index: numbe
           }}
           transition={{ 
             duration: 3, 
-            repeat: Infinity, 
+            // repeat: Infinity, 
             delay: index * 0.5,
             ease: "easeInOut"
           }}

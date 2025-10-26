@@ -12,22 +12,22 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email Us",
-    content: "contact@apexflow.tech",
-    href: "mailto:contact@apexflow.tech",
+    content: "harisudhan@apexflowtechnologies.com",
+    href: "mailto:harisudhan@apexflowtechnologies.com",
     color: "from-blue-500 to-cyan-600"
   },
   {
     icon: Phone,
     title: "Call Us",
-    content: "+1 (555) 123-4567",
-    href: "tel:+15551234567",
+    content: "+91 95007 05796",
+    href: "tel:+91 95007 05796",
     color: "from-green-500 to-emerald-600"
   },
   {
     icon: Linkedin,
     title: "Connect on LinkedIn",
     content: "Follow us on LinkedIn",
-    href: "https://linkedin.com",
+    href: "https://www.linkedin.com/company/apexflow-tech/",
     color: "from-purple-500 to-pink-600"
   },
 ];
@@ -248,14 +248,14 @@ export const Contact = () => {
                   >
                     <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2 flex items-center gap-2">
                       <Phone className="w-4 h-4 text-primary" />
-                      Your Phone Number (Optional)
+                      Your Phone Number 
                     </label>
                     <Input
                       id="phone"
                       type="tel"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="+1 (555) 123-4567"
+                      placeholder="+91 1234567899"
                       className="w-full glass-morphism border-border/50 focus:border-primary transition-all duration-300"
                     />
                   </motion.div>

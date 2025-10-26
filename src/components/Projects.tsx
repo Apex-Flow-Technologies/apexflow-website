@@ -5,21 +5,22 @@ import { CheckCircle2, Rocket, Target, Lightbulb, TrendingUp, ExternalLink } fro
 import { motion, useInView } from "framer-motion";
 
 const projects = [
-  {
-    title: "ApexService Flow",
-    subtitle: "Internal Tool",
-    tags: ["Custom Software", "Workflow Automation"],
-    summary:
-      "We built a custom internal service flow manager to streamline our own client project tracking, from initial consultation to final delivery and support.",
-    challenge:
-      "As we grew, managing client requests via email and spreadsheets became chaotic, leading to missed deadlines and inefficient communication.",
-    solution:
-      "We developed a custom web application that acts as a central hub for all client projects. It includes modules for ticketing, progress tracking, time logging, and automated client updates.",
-    result:
-      "A 40% reduction in time spent on project administration, improved team collaboration, and a transparent, professional experience for our clients.",
-    metrics: ["40% Time Saved", "100% Transparency", "24/7 Access"],
-    color: "from-blue-500 to-purple-600"
+    {
+    "title": "TechnoBright Ticketing",
+    "subtitle": "Mobile-first Ticketing & Field Service App",
+    "company": "TechnoBright Industries",
+    "tags": ["React Native (Expo)", "Firebase", "Firestore", "Cloud Functions", "FCM", "Storage"],
+    "summary": "A mobile-first ticketing system for TechnoBright Industries with three roles (user, manager, technician). Built with Expo React Native and Firebase (Auth + Firestore + Storage + Cloud Functions + FCM).",
+    "challenge": "Startup needs a fast-to-market, scalable backend without managing servers; required offline support for field technicians.",
+    "solution": "React Native (Expo) frontend + Firebase backend. Role-based auth, Firestore ticket lifecycle, technician time logging, S3-like storage via Firebase Storage, and Cloud Functions for assignment notifications and business rules.",
+    "result": "Faster development, offline-capable field workflow, and push notifications for real-time operations.",
+    "metrics": ["30% Faster Response", "50% Less Lost Tickets", "Realtime Visibility"],
+    "color": "from-teal-500 to-indigo-600",
+    "roles": ["user","manager","technician"],
+    "primary_platforms": ["Android", "iOS"],
+    "startup_needs": ["MVP-ready in 6 weeks", "Simple admin dashboard", "Push notifications"]
   },
+
   {
     title: "Leo Club Membership Portal",
     subtitle: "The Leo Club",
@@ -33,7 +34,8 @@ const projects = [
     result:
       "A 90% reduction in administrative overhead, accurate membership data, and a 50% increase in member engagement for events.",
     metrics: ["90% Efficiency", "50% Engagement", "Zero Errors"],
-    color: "from-green-500 to-teal-600"
+    color: "from-green-500 to-teal-600",
+    link: "https://www.leohopeville.org/"
   },
 ];
 
@@ -108,8 +110,18 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
                 className="text-3xl lg:text-4xl font-bold text-foreground group-hover:text-primary transition-colors duration-300"
                 whileHover={{ x: 5 }}
               >
-                {project.title}
+                {project.link ? (
+                  <a 
+                    href={project.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="hover:underline decoration-primary/50"
+                  >
+                    {project.title}
+                  </a>
+                ) : project.title}
               </motion.h3>
+
             </div>
             
             <motion.button
