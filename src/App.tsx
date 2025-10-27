@@ -26,5 +26,5 @@ const App = () => (
     </TooltipProvider>
   </QueryClientProvider>
 );
-
+ <Analytics />
 export default App;
