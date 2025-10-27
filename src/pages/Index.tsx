@@ -6,6 +6,9 @@ import { About } from "@/components/About";
 import { Projects } from "@/components/Projects";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
+
+import { Analytics } from "@vercel/analytics/react"
+
 import { ThemeProvider } from "next-themes";
 
 const Index = () => {
@@ -26,5 +29,5 @@ const Index = () => {
     </ThemeProvider>
   );
 };
-
+<Analytics/>
 export default Index;
