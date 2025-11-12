@@ -127,7 +127,7 @@ export const Hero = () => {
               size="lg"
               variant="outline"
               onClick={() => scrollToSection("#services")}
-              className="text-lg px-10 py-8 border-2 hover:bg-primary/10 hover:border-primary hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 hover:scale-105 glass-morphism"
+              className="text-lg px-10 py-8 border-2 hover:bg-primary/10 hover:text-black hover:border-primary hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 hover:scale-105 glass-morphism"
             >
               See Our Services
             </Button>

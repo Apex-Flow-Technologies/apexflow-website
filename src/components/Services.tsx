@@ -93,7 +93,7 @@ const ServiceCard = ({ service, index }: { service: typeof services[0]; index: n
             }}
             transition={{ duration: 0.5 }}
           >
-            <service.icon className="h-10 w-10 text-white" />
+            <service.icon className="h-10 w-10 text-black" />
           </motion.div>
           
           <motion.h3 

@@ -148,7 +148,7 @@ const ValueCard = ({ value, index }: { value: typeof values[0]; index: number })
             }}
             transition={{ duration: 0.6 }}
           >
-            <value.icon className="h-10 w-10 text-white" />
+            <value.icon className="h-10 w-10 text-black" />
           </motion.div>
           
           <motion.h4 
