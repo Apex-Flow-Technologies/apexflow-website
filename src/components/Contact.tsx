@@ -108,6 +108,7 @@ export const Contact = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState({})
   
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
@@ -131,16 +132,76 @@ export const Contact = () => {
       return;
     }
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    // Here you would typically send the form data to your backend
-    console.log("Form submitted:", formData);
-    toast.success("Message sent! We'll get back to you soon.");
-    
-    // Reset form
-    setFormData({ name: "", email: "", phone: "", message: "" });
-    setIsSubmitting(false);
+    // Content quality check to avoid spam flags
+    if (formData.message.trim().length < 10) {
+      toast.error("Please add more details to your message (10+ characters)");
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Reset submission status
+    // Validate form
+    // Set submitting state
+    try {
+      // Create FormData object
+      const formDataObj = new FormData();
+
+      // Add form fields
+      formDataObj.append("name", formData.name);
+      formDataObj.append("email", formData.email);
+      formDataObj.append("phone", formData.phone);
+      formDataObj.append("message", formData.message);
+      // Recommended fields to reduce spam and improve email headers
+      formDataObj.append("subject", `New Contact Message - ${formData.name || "ApexFlow Website"}`);
+      formDataObj.append("from_name", formData.name);
+      // Use replyto only; avoid overriding From which can trip filters
+      formDataObj.append("replyto", formData.email);
+      formDataObj.append("botcheck", "");
+      // Extra context for spam scoring
+      try {
+        formDataObj.append("page_url", window.location.href);
+        formDataObj.append("user_agent", navigator.userAgent);
+      } catch (_) {
+        // no-op for non-browser environments
+      }
+
+      // Add access key from environment variable
+      const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+      if (!accessKey) {
+        toast.error("Form service not configured. Missing access key.");
+        setIsSubmitting(false);
+        return;
+      }
+      formDataObj.append("access_key", accessKey);
+
+      // Send to Web3Forms API with multipart/form-data (let browser set headers)
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formDataObj,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        console.log("Success", result);
+        // Reset form on success
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          message: "",
+        });
+        toast.success("Message sent! We'll get back to you soon.");
+      } else {
+        console.error("Error", result);
+        toast.error(result?.message || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("Failed to send message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
