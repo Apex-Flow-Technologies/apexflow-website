@@ -28,15 +28,22 @@ export const Navbar = () => {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
+      // Close mobile menu first
       setIsMobileMenuOpen(false);
+      
+      // Small delay to ensure menu closes before scrolling
+      setTimeout(() => {
+        const offset = 80;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }, 100);
+    } else {
+      console.warn(`Element with id "${href}" not found`);
     }
   };
 
@@ -87,7 +94,10 @@ export const Navbar = () => {
                 onHoverEnd={() => setHoveredLink(null)}
               >
                 <button
-                  onClick={() => scrollToSection(link.href)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(link.href);
+                  }}
                   className="relative group text-foreground hover:text-primary transition-all duration-300 font-medium px-4 py-2 rounded-lg hover:bg-primary/10"
                 >
                   <span className="flex items-center gap-2">
@@ -186,7 +196,10 @@ export const Navbar = () => {
                   initial={{ opacity: 0, x: -50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
-                  onClick={() => scrollToSection(link.href)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    scrollToSection(link.href);
+                  }}
                   className="flex items-center gap-3 w-full text-left text-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300 font-medium py-3 px-4 rounded-lg"
                 >
                   <link.icon className="w-5 h-5" />
